@@ -14,6 +14,8 @@ import { login } from "../actions/auth";
 import AuthRouter from "./AuthRouter";
 import PrivateRouter from "./PrivateRouter";
 import PublicRouter from "./PublicRouter";
+import { loadData } from "../helpers/loadData";
+import { leerRegistros } from "../actions/nomina";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -27,8 +29,12 @@ const AppRouter = () => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
 
-        await dispatch(login(user.uid, user.displayName));
-        await setIsLog(true);
+        dispatch(login(user.uid, user.displayName));
+        setIsLog(true);
+
+        const nominaData = await loadData(user.uid);
+
+        dispatch(leerRegistros(nominaData));
       } else {
         // User is signed out
         setIsLog(false);

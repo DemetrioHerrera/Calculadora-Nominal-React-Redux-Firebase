@@ -32,11 +32,14 @@ export const googleLogin = () => {
   };
 };
 
-export const emailAndPassworLogin = (email, password) => {
+export const register = (email, username, password) => {
   return dispatch => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async ({ user }) => {
+        await updateProfile(auth.currentUser, {
+          displayName: username,
+        });
         dispatch(login(user.uid, user.displayName));
       })
       .catch(error => {
@@ -49,14 +52,11 @@ export const emailAndPassworLogin = (email, password) => {
   };
 };
 
-export const register = (email, username, password) => {
+export const emailAndPassworLogin = (email, password) => {
   return dispatch => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(async ({ user }) => {
-        await updateProfile(auth.currentUser, {
-          displayName: username,
-        });
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
       })
       .catch(error => {
