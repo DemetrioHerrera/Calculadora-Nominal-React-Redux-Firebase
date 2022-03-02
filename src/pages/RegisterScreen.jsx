@@ -1,29 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { register } from "../actions/auth";
+import { useData } from "../hooks/useData";
 
 const RegisterScreen = () => {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-    password2: "",
-    username: "",
-  });
-
   const dispatch = useDispatch();
 
-  const { email, username, password, password2 } = data;
-
-  const handleChange = e => {
-    const value = e.target.value;
-
-    setData({
-      ...data,
-      [e.target.name]: value,
-    });
-  };
+  const [{ email, username, password, password2 }, handleChange] = useData();
 
   const handleRegister = e => {
     e.preventDefault();
@@ -43,7 +28,7 @@ const RegisterScreen = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='container animate__animated animate__zoomIn'>
       <h3>Register</h3>
       <hr />
       <div className='row container'>

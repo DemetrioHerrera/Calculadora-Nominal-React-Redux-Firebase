@@ -1,10 +1,9 @@
-import React from "react";
-
+import React, { lazy } from "react";
 import { useSelector } from "react-redux";
-import Element from "../components/Element";
 
-import FormAdd from "../components/FormAdd";
-import Navbar from "../components/Navbar";
+const Element = lazy(() => import("../components/Element"));
+const FormAdd = lazy(() => import("../components/FormAdd"));
+const Navbar = lazy(() => import("../components/Navbar"));
 
 const AppScreen = () => {
   const name = useSelector(state => state.auth.displayName);
@@ -13,11 +12,11 @@ const AppScreen = () => {
   return (
     <>
       <Navbar />
-      <div className='container'>
+      <div className='container animate__animated animate__backInUp'>
         <h1 className='center'>Hola {name}</h1>
         <hr />
         <FormAdd />
-        <table>
+        <table className='responsive-table highlight'>
           <thead>
             <tr>
               <th>Fecha</th>

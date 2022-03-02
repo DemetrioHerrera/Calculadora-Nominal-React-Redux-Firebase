@@ -30,12 +30,12 @@ const Element = ({ data }) => {
   };
 
   return (
-    <tr>
+    <tr className='animate__animated animate__fadeInUp'>
       <td>{fechaFormateada[0]}</td>
-      <td>{pago}</td>
+      <td>${pago}</td>
       <td>
         <button onClick={handleDelete} className='btn red'>
-          Borrar
+          <i className='material-icons'>delete_forever</i>
         </button>{" "}
       </td>
     </tr>

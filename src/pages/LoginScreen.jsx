@@ -1,29 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
 import GoogleButton from "react-google-button";
 import { Link } from "react-router-dom";
 
 import { googleLogin, emailAndPassworLogin } from "../actions/auth";
+import { useData } from "../hooks/useData";
 
 const LoginScreen = () => {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
-
   const dispatch = useDispatch();
-
-  const { email, password } = data;
-
-  const handleChange = e => {
-    const value = e.target.value;
-
-    setData({
-      ...data,
-      [e.target.name]: value,
-    });
-  };
+  const [{ email, password }, handleChange] = useData();
 
   const handleEmailAndPasswordLogin = e => {
     e.preventDefault();
@@ -38,7 +24,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='container animate__animated animate__zoomIn'>
       <h3>Login</h3>
       <hr />
       <div className='row container'>

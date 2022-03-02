@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className='green'>
       <div className='nav-wrapper' style={{ padding: "2px" }}>
         <span className='brand-logo'>Calculadora Nominal</span>
-        <ul id='nav-mobile' className='right hide-on-med-and-down'>
+        <ul className='right hide-on-med-and-down'>
           <li>
             <button
               onClick={handleLogout}

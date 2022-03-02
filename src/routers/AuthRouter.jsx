@@ -1,8 +1,8 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import LoginScreen from "../pages/LoginScreen";
-import RegisterScreen from "../pages/RegisterScreen";
+const LoginScreen = lazy(() => import("../pages/LoginScreen"));
+const RegisterScreen = lazy(() => import("../pages/RegisterScreen"));
 
 const AuthRouter = () => {
   return (
